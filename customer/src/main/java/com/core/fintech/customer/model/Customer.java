@@ -1,12 +1,12 @@
 package com.core.fintech.customer.model;
 
-import java.util.UUID;
-
-import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Customer {
@@ -14,9 +14,18 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long uuid;
+
+	@NotEmpty
 	private String name;
+
+	@NotEmpty
 	private String surname;
-	private Long identityNumber;
+
+	@NotEmpty
+	@Size(max = 11, min = 11)
+	private String identityNumber;
+
+	@NotNull
 	private Integer status;
 
 	public Long getUuid() {
@@ -43,11 +52,11 @@ public class Customer {
 		this.surname = surname;
 	}
 
-	public Long getIdentityNumber() {
+	public String getIdentityNumber() {
 		return identityNumber;
 	}
 
-	public void setIdentityNumber(Long identityNumber) {
+	public void setIdentityNumber(String identityNumber) {
 		this.identityNumber = identityNumber;
 	}
 
